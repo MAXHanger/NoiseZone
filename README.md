@@ -3,6 +3,16 @@
 A `canvas_item` shader that renders a CRT-style effect confined to a black-and-white mask:
 **turbulent mosaic + inner/outer glow + TV grain + screen refraction + turbulent dissolve**.
 
+- This effect is inspired by the `Noisefield` in the game `phigros`; this shader aims to recreate it as faithfully as possible.
+
+### TODO — Effects still to be optimized or added
+
+1. The masked area should contain countless `tiny rectangular particles`, creating a chaotic, murky, glitchy feel. I've tried hash-based random generation and 3D-noise evolution along the Z axis to simulate the particles, but the result still isn't right.
+2. The `scale ratio` doesn't seem right — the rectangle's distortion feels too weak, yet raising `displacement_scale` makes it chaotic instead. Not sure whether this is a window-size issue or a parameter issue.
+3. The distortion method itself may be wrong — it could be the way the code warps the UVs, or it could be the `Noise Tex` texture.
+
+- The code still needs refinement and optimization — feedback and criticism are welcome.
+
 ## Features
 
 - Block-quantized ("mosaic") turbulence driven by a noise texture
