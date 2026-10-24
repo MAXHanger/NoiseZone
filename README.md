@@ -85,4 +85,4 @@ A ready-to-run example is provided in [`noise_show.tscn`](noise_show.tscn).
 
 ## License
 
-CCO-1.0
+CC0-1.0
