@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://bmy26kihglhyy"]
+
+[ext_resource type="Texture2D" uid="uid://hk60um5xxwk3" path="res://icon.svg" id="1_ifd0h"]
+[ext_resource type="Shader" uid="uid://vlmpv6cvohmv" path="res://noise_zone.gdshader" id="2_ut7up"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1bvp3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lquwl"]
+noise = SubResource("FastNoiseLite_1bvp3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mycd"]
+shader = ExtResource("2_ut7up")
+shader_parameter/block_color = Color(0.5601723, 0.062098727, 0.06208223, 0.93333334)
+shader_parameter/glow_color = Color(1, 0.2, 0.2, 1)
+shader_parameter/glow_intensity = 2.0
+shader_parameter/glow_width = 8.0
+shader_parameter/glow_falloff = 2.0
+shader_parameter/glow_opacity = 0.5
+shader_parameter/edge_mode = 0
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_lquwl")
+shader_parameter/evolution_speed = 0.125
+shader_parameter/turbulence_scale = Vector2(2, 2)
+shader_parameter/displacement_scale = 0.04
+shader_parameter/block_size = 8.0
+shader_parameter/noise_grain_strength = 1.182000056145
+shader_parameter/noise_grain_speed = 45.0
+shader_parameter/noise_mode = 0
+shader_parameter/screen_distortion_strength = 2.00999995507248
+shader_parameter/overlay_opacity = 1.0
+shader_parameter/dissolve_threshold = 0.0
+shader_parameter/dissolve_contrast = 1.2320000578214798
+shader_parameter/blend_mode = 0
+shader_parameter/light_radius = 400.0
+shader_parameter/light_falloff = 2.0
+shader_parameter/light_ambient = 0.05
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_272bh"]
+viewport_path = NodePath("SubViewportContainer/MainViewport/MaskViewport")
+
+[node name="Main" type="Node2D" unique_id=1626736336]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=265972222]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MainViewport" type="SubViewport" parent="SubViewportContainer" unique_id=397818938]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="GameTexture" type="TextureRect" parent="SubViewportContainer/MainViewport" unique_id=1150142779]
+offset_left = 344.0
+offset_top = 96.0
+offset_right = 808.0
+offset_bottom = 544.0
+texture = ExtResource("1_ifd0h")
+
+[node name="MaskToEffect" type="TextureRect" parent="SubViewportContainer/MainViewport" unique_id=1199601455]
+material = SubResource("ShaderMaterial_7mycd")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("ViewportTexture_272bh")
+
+[node name="MaskViewport" type="SubViewport" parent="SubViewportContainer/MainViewport" unique_id=577129624]
+size = Vector2i(1152, 648)
+
+[node name="Black" type="ColorRect" parent="SubViewportContainer/MainViewport/MaskViewport" unique_id=667160406]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="White" type="ColorRect" parent="SubViewportContainer/MainViewport/MaskViewport" unique_id=1601935693]
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 960.0
+offset_bottom = 576.0
+
+[node name="Black2" type="ColorRect" parent="SubViewportContainer/MainViewport/MaskViewport" unique_id=781640435]
+offset_left = 424.0
+offset_top = 240.0
+offset_right = 736.0
+offset_bottom = 408.0
+color = Color(0, 0, 0, 1)
