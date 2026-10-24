@@ -85,4 +85,4 @@ A ready-to-run example is provided in [`noise_show.tscn`](noise_show.tscn).
 
 ## License
 
-Choose a license before publishing (e.g. MIT) and place the license text here.
+CCO-1.0
